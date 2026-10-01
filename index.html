@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#071A24" />
+  <title>Asset Chain — Add to Wallet</title>
+  <style>
+    :root{--bg:#071A24;--card:#0B2934;--cyan:#12D9F5;--teal:#00B8A9;--white:#F2FCFF;--muted:#8DA9B3}
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;background:
+    radial-gradient(circle at 50% 12%,rgba(18,217,245,.16),transparent 30%),
+    radial-gradient(circle at 10% 90%,rgba(0,184,169,.10),transparent 32%),var(--bg);
+    color:var(--white);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    display:grid;place-items:center;padding:24px}
+    .wrap{width:min(420px,100%);text-align:center}.logo{width:88px;height:88px;border-radius:24px;object-fit:cover;
+    box-shadow:0 0 45px rgba(18,217,245,.18);margin-bottom:22px}h1{font-size:36px;line-height:1.05;
+    letter-spacing:-1.2px;margin:0 0 9px}.sub{color:var(--muted);font-size:15px;margin:0 0 30px}
+    .buttons{display:grid;gap:13px}button{font:inherit;cursor:pointer}
+    .network{border:1px solid rgba(99,243,255,.28);border-radius:18px;padding:18px;font-weight:800;font-size:16px;
+    color:#02141b;background:linear-gradient(135deg,var(--cyan),var(--teal));box-shadow:0 12px 35px rgba(18,217,245,.12)}
+    .network.secondary{color:var(--white);background:rgba(11,41,52,.8);box-shadow:none}
+    .network:active{transform:scale(.99)}#status{min-height:20px;color:var(--muted);font-size:12px;margin-top:20px}
+    .foot{color:rgba(141,169,179,.55);font-size:11px;margin-top:30px}
+    .hidden{display:none}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <img class="logo" src="/asset-chain-logo.jpg" alt="Asset Chain">
+    <h1>Connect Asset Chain</h1>
+    <p class="sub">Add Asset Chain to your wallet.</p>
+    <div class="buttons">
+      <button class="network" id="mainnet">Add Mainnet</button>
+      <button class="network secondary" id="testnet">Add Testnet</button>
+    </div>
+    <div id="status"></div>
+    <div class="foot">Asset Chain</div>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
