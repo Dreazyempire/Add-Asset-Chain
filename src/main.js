@@ -83,7 +83,15 @@ async function addViaConnectedWallet() {
     if (!provider) throw new Error('Wallet connected, but no provider found.')
     announce('Approve the request in your wallet...')
     await appKit.close()
-    await requestAdd(provider, chain)
+    try {
+      await requestAdd(provider, chain)
+    } catch (e) {
+      if (e?.code === 4001) throw e
+      console.error('wallet_addEthereumChain over WalletConnect failed, trying switchNetwork', e)
+      announce('Trying another method...')
+      await appKit.switchNetwork(chainData(chain))
+      announce(`${chainData(chain).name} requested. Check your wallet to confirm.`, true)
+    }
   } catch (e) {
     handleError(e)
   }
@@ -100,16 +108,6 @@ try {
     // Pin Zerion near the top (verify ID at walletguide.walletconnect.network)
     featuredWalletIds: [
       'ecc4036f814562b41a5268adc86270fba1365471402006302e70169465b7ac18'
-    ],
-    // Fallback: always list Zerion, opening it by deep link on mobile
-    customWallets: [
-      {
-        id: 'zerion-custom',
-        name: 'Zerion',
-        homepage: 'https://zerion.io',
-        mobile_link: 'zerion://',
-        webapp_link: 'https://app.zerion.io'
-      }
     ],
     projectId,
     metadata: {
